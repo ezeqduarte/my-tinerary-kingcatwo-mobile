@@ -1,5 +1,5 @@
 import React from "react";
-import CardCity from "../components/CardCity"
+import CardCity from "../components/CardCity";
 import {
   ImageBackground,
   ScrollView,
@@ -28,9 +28,20 @@ export default function Cities() {
         </Text>
         <TextInput placeholder="Search for name" style={styles.inputSearch} />
       </View>
-    <CardCity></CardCity>
-    </ScrollView>
+      <ScrollView style={styles.main}>
+        <CardCity></CardCity>
+        <CardCity></CardCity>
+        <CardCity></CardCity>
+        <CardCity></CardCity>
+        <CardCity></CardCity>
+        <CardCity></CardCity>
+        <CardCity></CardCity>
+        <CardCity></CardCity>
+      </ScrollView>
+      <View style={styles.footer}>
 
+      </View>
+    </ScrollView>
   );
 }
 
@@ -66,13 +77,11 @@ const styles = StyleSheet.create({
     color: "#ff3648",
   },
   containerCities: {
-    backgroundColor: "#fefefe",
     padding: 20,
     flex: 1,
     justifyContent: "center",
   },
   inputSearch: {
-    backgroundColor: "#fefefe",
     fontSize: 15,
     textAlign: "center",
     padding: 3,
@@ -80,5 +89,8 @@ const styles = StyleSheet.create({
     borderBottomColor: "#000000",
     borderWidth: 1,
     borderRadius: 5,
+  },
+  main: {
+    paddingHorizontal: 20,
   },
 });

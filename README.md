@@ -1,1 +1,1 @@
-# My tyinerary mobile. Team Kingca two
+# My tinerary mobile. Team Kingca two

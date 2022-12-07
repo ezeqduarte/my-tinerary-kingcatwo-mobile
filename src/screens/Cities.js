@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import CardCity from "../components/CardCity";
 import { useDispatch, useSelector } from "react-redux";
 import citiesActions from "../redux/actions/citiesActions";
+import Footer from "../components/Footer";
 
 import {
   ImageBackground,
@@ -11,15 +12,15 @@ import {
   View,
   Text,
 } from "react-native";
-import Footer from "../components/Footer";
 
-export default function Cities() {
+export default function Cities(props) {
   const image = { uri: "https://cdn.wallpapersafari.com/80/95/bhD7xr.jpg" };
   const { getCities, getContinent } = citiesActions;
   const dispatch = useDispatch();
   let allContinents = useSelector((store) => store.citiesReducer.continents);
   const citiesFiltered = useSelector((store) => store.citiesReducer.cities);
   const [text, setText] = useState("");
+  
 
   allContinents = [
     ...new Set([...allContinents].map((city) => city.continent)),
@@ -70,7 +71,7 @@ export default function Cities() {
         </View>
         <ScrollView style={styles.main}>
           {citiesFiltered.map((city) => (
-            <CardCity key={city._id} city={city}></CardCity>
+            <CardCity key={city._id} props={props.navigation} city={city}></CardCity>
           ))}
         </ScrollView>
         <Footer/>
@@ -128,7 +129,7 @@ const styles = StyleSheet.create({
     textAlign: "center",
     padding: 1,
     margin: 10,
-    borderBottomColor: "#000000",
+    borderColor: "rgba(0,0,0,.496)",
     borderWidth: 1,
     borderRadius: 5,
     backgroundColor: "#f3f3f3",

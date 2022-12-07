@@ -25,7 +25,12 @@ export default function CardCity(props) {
       </View>
       <Text style={styles.h3}>{city.name}</Text>
       <View style={styles.btnDetails}>
-        <Button color="#ff3648" title="More details" />
+        <Button
+          color="#ff3648"
+          onPress={() => props.props.navigate("Details City", city._id)}
+          title="More details"
+          id={city._id}
+        />
       </View>
     </View>
   );

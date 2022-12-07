@@ -34,7 +34,6 @@ export default function DetailsCity(props) {
     setItineraries(res.payload.itineraries);
   }
 
-
   useEffect(() => {
     petitionCity();
     petitionItineraries();
@@ -65,7 +64,16 @@ export default function DetailsCity(props) {
             Tineraries of {detailCity?.name}
             <Text style={styles.decored}>.</Text>
           </Text>
-        {/*   {itineraries?.map(itinerary=><CardTinerary itinerary={itinerary}></CardTinerary>)} */}
+          {itineraries?.length > 0 ? (
+            itineraries?.map((itinerary) => (
+              <CardTinerary itinerary={itinerary}></CardTinerary>
+            ))
+          ) : (
+            <Text style={styles.thirdText}>
+              No tineraries available
+              <Text style={styles.decored}>.</Text>
+            </Text>
+          )}
         </ScrollView>
       </View>
 
@@ -102,14 +110,15 @@ const styles = StyleSheet.create({
     textAlign: "left",
   },
   secondarytext: {
+    marginTop: 20,
     color: "black",
     fontSize: 35,
-    lineHeight: 65,
+    lineHeight: 35,
     fontWeight: "bold",
     textAlign: "center",
   },
   thirdText: {
-    marginTop: 10,
+    marginTop: 40,
     color: "black",
     fontSize: 20,
     lineHeight: 25,

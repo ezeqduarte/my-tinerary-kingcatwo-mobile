@@ -8,6 +8,7 @@ export default function Stack() {
   return (
     <StackNav.Navigator>
       <StackNav.Screen name="Cities" component={cities} />
+      
     </StackNav.Navigator>
   );
 }

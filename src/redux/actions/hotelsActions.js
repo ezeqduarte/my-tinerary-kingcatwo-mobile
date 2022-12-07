@@ -2,13 +2,11 @@ import { createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
 import API from "../../api/api";
 
-const getHotels = createAsyncThunk("getHotels", async (data) => {
+const getHotels = createAsyncThunk("getHotels", async ({text}) => {
   try {
-    const inputText = data.inputText;
-    const option = data.option;
-    const respuesta = await axios.get(
-      `${API}hotels/?name=${inputText}&order=${option}`
-    );
+    const inputText = text.inputText;
+    const option = text.option;
+    const respuesta = await axios.get(`${API}hotels/?name=${text}`);
 
     return { hotelsR: respuesta.data.Hotels };
   } catch (error) {

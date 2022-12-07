@@ -1,6 +1,6 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
-import API from "../../api";
+import API from "../../api/api";
 
 /* let token = JSON.parse(localStorage.getItem("token"));
 
@@ -8,9 +8,9 @@ if (token) {
   dispatch(reIngress(token.token.user));
 } */
 
-const getCities = createAsyncThunk("getCities", async ({ peticion }) => {
+const getCities = createAsyncThunk("getCities", async ({text}) => {
   try {
-    const res = await axios.get(`${API}/cities/${peticion}`);
+    const res = await axios.get(`${API}/cities/?name=${text}`);
 
     return {
       cities: res.data.cities,

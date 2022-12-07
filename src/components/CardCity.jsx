@@ -6,16 +6,26 @@ import {
   TextInput,
   View,
   Text,
+  Button,
+  Image,
 } from "react-native";
 
 export default function CardCity(props) {
-  /* let {city}=props */
+  let { city } = props;
+
   return (
     <View style={styles.cardCity}>
-      <View className="imgCard"></View>
-      <Text>Meet our most popular locations</Text>
-      <View className="btn-details">
-        <Text>Meet our most popular locations</Text>
+      <View className="imgCard">
+        <Image
+          style={styles.image}
+          source={{
+            uri: `${city.photo}`,
+          }}
+        />
+      </View>
+      <Text style={styles.h3}>{city.name}</Text>
+      <View style={styles.btnDetails}>
+        <Button color="#ff3648" title="More details" />
       </View>
     </View>
   );
@@ -23,51 +33,30 @@ export default function CardCity(props) {
 
 const styles = StyleSheet.create({
   cardCity: {
-    width: 340,
-    height: 470,
-    backgroundColor: "#f3f3f3",
+    height: "auto",
+    backgroundColor: "#fefefe",
+    marginTop: 35,
+    width: "auto",
     flex: 1,
     justifyContent: "center",
     alignItems: "center",
-    padding: 5,
+    borderRadius: 5,
   },
-  imgCard: {
-    flex: 1,
-    justifyContent: "center",
-    height: 710,
+  image: {
+    width: 430,
+    height: 320,
+    borderRadius: 15,
+  },
+  h3: {
+    fontSize: 30,
+    textAlign: "center",
+    margin: 20,
   },
   btnDetails: {
-    color: "white",
-    fontSize: 47,
-    lineHeight: 65,
-    fontWeight: "bold",
-    textAlign: "left",
-  },
-  secondarytext: {
-    color: "black",
-    fontSize: 47,
-    lineHeight: 65,
-    fontWeight: "bold",
-    textAlign: "center",
-  },
-
-  decored: {
-    color: "#ff3648",
-  },
-  containerCities: {
-    backgroundColor: "#fefefe",
-    padding: 20,
-    flex: 1,
-    justifyContent: "center",
-  },
-  inputSearch: {
-    backgroundColor: "#fefefe",
-    fontSize: 15,
-    textAlign: "center",
-    padding: 3,
-    margin: 10,
-    borderBottomColor: "#000000",
-    borderWidth: 1,
-    borderRadius: 5,
+    fontWeight: 800,
+    fontSize: 90,
+    width: 350,
+    marginBottom: 20,
+    backgroundColor: "#ff3648",
   },
 });

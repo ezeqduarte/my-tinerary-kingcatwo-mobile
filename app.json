@@ -4,12 +4,12 @@
     "slug": "my-tinerarykingca-mobile",
     "version": "1.0.0",
     "orientation": "portrait",
-    "icon": "./assets/logo.png",
+    "icon": "https://cdn.discordapp.com/attachments/1026888381814288424/1049871880804388984/aa.png",
     "userInterfaceStyle": "dark",
     "splash": {
-      "image": "./assets/logo.png", 
+      "image": "https://cdn.discordapp.com/attachments/1026888381814288424/1049871880804388984/aa.png", 
       "resizeMode": "contain",
-      "backgroundColor": "#ffffff"
+      "backgroundColor": "#0E0E0E"
     },
     "updates": {
       "fallbackToCacheTimeout": 0
@@ -22,12 +22,12 @@
     },
     "android": {
       "adaptiveIcon": {
-        "foregroundImage": "./assets/logo.png",
-        "backgroundColor": "#FFFFFF"
+        "foregroundImage": "https://cdn.discordapp.com/attachments/1026888381814288424/1049871880804388984/aa.png",
+        "backgroundColor": "#0E0E0E"
       }
     },
     "web": {
-      "favicon": "./assets/logo.png"
+      "favicon": "https://cdn.discordapp.com/attachments/1026888381814288424/1049871880804388984/aa.png"
     }
   }
 }

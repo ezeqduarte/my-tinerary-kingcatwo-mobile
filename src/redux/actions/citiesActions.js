@@ -23,6 +23,21 @@ const getCities = createAsyncThunk("getCities", async ({text}) => {
   }
 });
 
+const getCity = createAsyncThunk("getCity", async ({id}) => {
+  try {
+    const res = await axios.get(`${API}/cities/${id}`);
+
+    return {
+      cities: res.data.cities,
+    };
+  } catch (error) {
+    console.log(error.message);
+    return {
+      cities: [],
+    };
+  }
+});
+
 const getContinent = createAsyncThunk("getContinent", async () => {
   try {
     const res = await axios.get(`${API}/cities/`);
@@ -128,6 +143,7 @@ const citiesActions = {
   deleteCityAdmin,
   editCityAdmin,
   createCity,
+  getCity,
 };
 
 export default citiesActions;

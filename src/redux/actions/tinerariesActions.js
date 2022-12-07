@@ -20,6 +20,21 @@ const getTinerariesUser = createAsyncThunk(
   }
 );
 
+const getTinerariesOfCity = createAsyncThunk("getTinerariesOfCity", async ({id}) => {
+  try {
+    const res = await axios.get(`${API}/itineraries/?cityId=${id}`);
+
+    return {
+      itineraries: res.data.searched,
+    };
+  } catch (error) {
+    console.log(error.message);
+    return {
+      cities: [],
+    };
+  }
+});
+
 const deleteTinerary = createAsyncThunk("deleteTinerary", async (data) => {
   const { id, token } = data;
   let headers = { headers: { Authorization: `Bearer ${token}` } };
@@ -80,6 +95,7 @@ const tinerariesActions = {
   deleteTinerary,
   editTinerary,
   newTinerary,
+  getTinerariesOfCity,
 };
 
 export default tinerariesActions;

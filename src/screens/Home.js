@@ -13,6 +13,7 @@ import {
   SafeAreaView,
   Animated,
 } from "react-native";
+import Footer from "../components/Footer";
 import ImagesHome from "../components/ImagesHome";
 
 export default function Cities() {
@@ -22,32 +23,29 @@ export default function Cities() {
 
   return (
     <ScrollView>
-     
       <ImageBackground source={image} resizeMode="cover" style={styles.image}>
-        
-     
         <View style={styles.container}>
-        <Image  style={styles.logo}
-          source={{
-            uri: "https://cdn.discordapp.com/attachments/1026888381814288424/1049871880804388984/aa.png",
-          }}></Image>
-          
+          <Image
+            style={styles.logo}
+            source={{
+              uri: "https://cdn.discordapp.com/attachments/1026888381814288424/1049871880804388984/aa.png",
+            }}
+          ></Image>
+
           <Text style={styles.text}>
-          <Text style={styles.decored}>[ </Text>
+            <Text style={styles.decored}>[ </Text>
             Know the World
             <Text style={styles.decored}> ]</Text>
           </Text>
           <Text style={styles.text5}>Mobile version</Text>
         </View>
       </ImageBackground>
-   
-      
+
       {/* Aca me traigo el componente que tiene todas las imagenes */}
       <View style={styles.contenedorGaleria}>
-      <ImagesHome></ImagesHome>
+        <ImagesHome></ImagesHome>
       </View>
-     
-
+      <Footer />
     </ScrollView>
   );
 }
@@ -68,7 +66,7 @@ const styles = StyleSheet.create({
   text: {
     color: "#eee",
     fontSize: 25,
- 
+
     fontWeight: "bold",
     textAlign: "left",
   },
@@ -83,7 +81,6 @@ const styles = StyleSheet.create({
     fontSize: 15,
     fontWeight: "light",
     margin: 4,
-    
   },
 
   decored: {
@@ -101,15 +98,13 @@ const styles = StyleSheet.create({
   },
 
   logo: {
-    height:130,
+    height: 130,
     width: 130,
-  marginRight: 12,
+    marginRight: 12,
   },
-
-  
 
   contenedorGaleria: {
     marginBottom: 35,
     marginTop: 35,
-  }
+  },
 });

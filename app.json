@@ -4,10 +4,10 @@
     "slug": "my-tinerarykingca-mobile",
     "version": "1.0.0",
     "orientation": "portrait",
-    "icon": "./assets/logo2.png",
-    "userInterfaceStyle": "light",
+    "icon": "./assets/logo.png",
+    "userInterfaceStyle": "dark",
     "splash": {
-      "image": "./assets/logo2.png", 
+      "image": "./assets/logo.png", 
       "resizeMode": "contain",
       "backgroundColor": "#ffffff"
     },

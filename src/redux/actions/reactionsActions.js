@@ -1,6 +1,6 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
-import API from "../../api";
+import API from "../../api/api";
 
 const reactions = createAsyncThunk("reactionOfTinerary", async (data) => {
   const { token, id } = data;

@@ -1,5 +1,9 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import CardCity from "../components/CardCity";
+import { useDispatch, useSelector } from "react-redux";
+import citiesActions from "../redux/actions/citiesActions";
+
+
 import {
   ImageBackground,
   ScrollView,
@@ -11,37 +15,67 @@ import {
 
 export default function Cities() {
   const image = { uri: "https://cdn.wallpapersafari.com/80/95/bhD7xr.jpg" };
+  const { getCities, getContinent } = citiesActions;
+  const dispatch = useDispatch();
+  let allContinents = useSelector((store) => store.citiesReducer.continents);
+  const citiesFiltered = useSelector((store) => store.citiesReducer.cities);
+  const [text, setText] = useState(""); 
+
+  allContinents = [
+    ...new Set([...allContinents].map((city) => city.continent)),
+  ];
+
+  useEffect(() => {
+    dispatch(getContinent());
+  }, []);
+
+  useEffect(() => {
+    dispatch(getCities({ text: text }));
+  }, [text]);
 
   return (
-    <ScrollView>
-      <ImageBackground source={image} resizeMode="cover" style={styles.image}>
-        <View style={styles.container}>
-          <Text style={styles.text}>
-            Meet our most popular locations
+    <>
+      <ScrollView>
+        <ImageBackground source={image} resizeMode="cover" style={styles.image}>
+          <View style={styles.container}>
+            <Text style={styles.text}>
+              Meet our most popular locations
+              <Text style={styles.decored}>.</Text>
+            </Text>
+          </View>
+        </ImageBackground>
+        <View style={styles.containerCities}>
+          <Text style={styles.secondarytext}>
+            Cities<Text style={styles.decored}>.</Text>
+          </Text>
+          <Text style={styles.thirdText}>
+            Investigate our cities
             <Text style={styles.decored}>.</Text>
           </Text>
+          <View>
+            {/*  {allContinents.map((continent) => (
+            <CheckBox
+            disabled={false}
+            value={toggleCheckBox}
+            onValueChange={(newValue) => setToggleCheckBox(newValue)}
+            />
+          ))} */}
+          </View>
+          <TextInput
+            onChangeText={(newText) => setText(newText)}
+            defaultValue={text}
+            placeholder="Search for name"
+            style={styles.inputSearch}
+          />
         </View>
-      </ImageBackground>
-      <View style={styles.containerCities}>
-        <Text style={styles.secondarytext}>
-          Cities<Text style={styles.decored}>.</Text>
-        </Text>
-        <TextInput placeholder="Search for name" style={styles.inputSearch} />
-      </View>
-      <ScrollView style={styles.main}>
-        <CardCity></CardCity>
-        <CardCity></CardCity>
-        <CardCity></CardCity>
-        <CardCity></CardCity>
-        <CardCity></CardCity>
-        <CardCity></CardCity>
-        <CardCity></CardCity>
-        <CardCity></CardCity>
+        <ScrollView style={styles.main}>
+          {citiesFiltered.map((city) => (
+            <CardCity city={city}></CardCity>
+          ))}
+        </ScrollView>
+        <View style={styles.footer}></View>
       </ScrollView>
-      <View style={styles.footer}>
-
-      </View>
-    </ScrollView>
+    </>
   );
 }
 
@@ -56,7 +90,7 @@ const styles = StyleSheet.create({
   image: {
     flex: 1,
     justifyContent: "center",
-    height: 710,
+    height: 630,
   },
   text: {
     color: "white",
@@ -72,6 +106,14 @@ const styles = StyleSheet.create({
     fontWeight: "bold",
     textAlign: "center",
   },
+  thirdText: {
+    marginTop: 10,
+    color: "black",
+    fontSize: 20,
+    lineHeight: 25,
+    fontWeight: "light",
+    textAlign: "center",
+  },
 
   decored: {
     color: "#ff3648",
@@ -84,13 +126,18 @@ const styles = StyleSheet.create({
   inputSearch: {
     fontSize: 15,
     textAlign: "center",
-    padding: 3,
+    padding: 1,
     margin: 10,
     borderBottomColor: "#000000",
     borderWidth: 1,
     borderRadius: 5,
+    backgroundColor: "#f3f3f3",
   },
   main: {
     paddingHorizontal: 20,
+  },
+  footer: {
+    height: 250,
+    color: "red"
   },
 });

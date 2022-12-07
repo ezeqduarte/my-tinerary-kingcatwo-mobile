@@ -1,5 +1,4 @@
 import { createReducer } from "@reduxjs/toolkit";
-import hotels from "../../data/hotels";
 import hotelsAction from "../actions/hotelsActions";
 
 const initialState = {

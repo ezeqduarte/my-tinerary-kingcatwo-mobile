@@ -1,6 +1,6 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
-import API from "../../api";
+import API from "../../api/api";
 
 const getShows = createAsyncThunk("getShows", async (user) => {
   try {

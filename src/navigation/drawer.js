@@ -7,7 +7,7 @@ const DrawerNav = createDrawerNavigator();
 export default function Drawer() {
   return (
     <DrawerNav.Navigator initialRouteName="Home">
-      <DrawerNav.Screen name="Cities" component={Cities} />
+      <DrawerNav.Screen  name="Cities" component={Cities} />
     </DrawerNav.Navigator>
   );
 }

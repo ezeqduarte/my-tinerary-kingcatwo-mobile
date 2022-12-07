@@ -11,9 +11,7 @@ import {
 } from "react-native";
 
 export default function CardCity(props) {
-  /* let {city}=props
-
-  const image = {city.image} */
+  let { city } = props;
 
   return (
     <View style={styles.cardCity}>
@@ -21,11 +19,11 @@ export default function CardCity(props) {
         <Image
           style={styles.image}
           source={{
-            uri: "https://reactnative.dev/img/tiny_logo.png",
+            uri: `${city.photo}`,
           }}
         />
       </View>
-      <Text  style={styles.h3}>Meet our most popular locations</Text>
+      <Text style={styles.h3}>{city.name}</Text>
       <View style={styles.btnDetails}>
         <Button color="#ff3648" title="More details" />
       </View>
@@ -36,7 +34,7 @@ export default function CardCity(props) {
 const styles = StyleSheet.create({
   cardCity: {
     height: "auto",
-    backgroundColor: "red",
+    backgroundColor: "#fefefe",
     marginTop: 35,
     width: "auto",
     flex: 1,

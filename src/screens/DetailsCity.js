@@ -2,8 +2,8 @@ import React, { useEffect, useState } from "react";
 import CardCity from "../components/CardCity";
 import { useDispatch, useSelector } from "react-redux";
 import citiesActions from "../redux/actions/citiesActions";
+import tinerariesActions from "../redux/actions/tinerariesActions";
 import Footer from "../components/Footer";
-
 
 import {
   ImageBackground,
@@ -13,11 +13,14 @@ import {
   View,
   Text,
 } from "react-native";
+import CardTinerary from "../components/CardTinerary";
 
 export default function DetailsCity(props) {
   console.log(props.route.params);
   const { getCity } = citiesActions;
+  const { getTinerariesOfCity } = tinerariesActions;
   let [detailCity, setDetailCity] = useState();
+  let [itineraries, setItineraries] = useState();
 
   const dispatch = useDispatch();
 
@@ -25,9 +28,16 @@ export default function DetailsCity(props) {
     const res = await dispatch(getCity({ id: props.route.params }));
     setDetailCity(res.payload.cities);
   }
- 
+
+  async function petitionItineraries() {
+    const res = await dispatch(getTinerariesOfCity({ id: props.route.params }));
+    setItineraries(res.payload.itineraries);
+  }
+
+
   useEffect(() => {
     petitionCity();
+    petitionItineraries();
   }, []);
 
   const image = { uri: `${detailCity?.photo}` };
@@ -52,9 +62,10 @@ export default function DetailsCity(props) {
       <View style={styles.containerCities}>
         <ScrollView>
           <Text style={styles.secondarytext}>
-            Tineraries of {detailCity?.name}<Text style={styles.decored}>.</Text>
+            Tineraries of {detailCity?.name}
+            <Text style={styles.decored}>.</Text>
           </Text>
-          
+        {/*   {itineraries?.map(itinerary=><CardTinerary itinerary={itinerary}></CardTinerary>)} */}
         </ScrollView>
       </View>
 

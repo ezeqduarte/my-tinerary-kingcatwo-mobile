@@ -4,6 +4,9 @@ import React from "react";
 export default function CardTinerary({ itinerary }) {
   return (
     <View style={styles.cardCity}>
+      <View style={styles.reactions}>
+
+      </View>
       <Image
         style={styles.image}
         source={{
@@ -81,5 +84,8 @@ const styles = StyleSheet.create({
   },
   decored: {
     color: "#ff3648",
+  },
+  reactions: {
+    color: "white",
   },
 });

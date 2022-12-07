@@ -1,21 +1,17 @@
-import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
+import 'react-native-gesture-handler'
+import * as React from "react";
+import { NavigationContainer } from "@react-navigation/native";
+import Stack from "./src/navigation/stack";
+import Drawer from './src/navigation/drawer';
 
 export default function App() {
   return (
-    <View style={styles.container}>
-      <Text>La Silvia pa?</Text>
-     
-      <StatusBar style="auto" />
-    </View>
+    <NavigationContainer>
+      {/* NavigationContainer es el contenedor de cada ruta */}
+      <Drawer/> 
+      {/* El Drawer es cada ruta*/}
+    </NavigationContainer>
   );
 }
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
+

@@ -2,12 +2,12 @@ import { createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
 import API from "../../api/api";
 
-const getShows = createAsyncThunk("getShows", async (user) => {
+const getShows = createAsyncThunk("getShows", async ({id}) => {
   try {
-    const res = await axios.get(`${API}/shows/?userId=${user}`); //Respuesta de la API
+    const res = await axios.get(`${API}/shows/?hotelId=${id}`); //Respuesta de la API
 
     return {
-      showsUser: res.data.searched,
+      shows: res.data.searched,
     };
   } catch (error) {
     console.log(error.message);

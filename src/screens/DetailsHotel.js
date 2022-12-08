@@ -20,7 +20,7 @@ export default function DetailsHotel(props) {
   let [detailHotel, setDetailHotel] = useState();
 
   let [shows, setShows] = useState([]);
-  console.log(detailHotel);
+  
   const dispatch = useDispatch();
 
   async function petitionHotel() {

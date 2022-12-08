@@ -25,7 +25,10 @@ export default function CardHotel(props) {
       </View>
       <Text style={styles.h3}>{hotel.name}</Text>
       <View style={styles.btnDetails}>
-        <Button color="#ff3648" title="More details" />
+        <Button   color="#ff3648"
+          onPress={() => props.props.navigate("Details Hotel", hotel._id)}
+          title="More details"
+          id={hotel._id} />
       </View>
     </View>
   );

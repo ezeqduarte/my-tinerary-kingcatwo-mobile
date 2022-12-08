@@ -14,16 +14,15 @@ import {
 import Footer from "../components/Footer";
 import CardHotel from "../components/CardHotel";
 
-export default function Hotels() {
-  const image = { uri: "https://images.unsplash.com/photo-1455587734955-081b22074882?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1470&q=80" };
+export default function Hotels(props) {
+  const image = {
+    uri: "https://images.unsplash.com/photo-1455587734955-081b22074882?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1470&q=80",
+  };
   const { getHotels } = hotelsAction;
   const dispatch = useDispatch();
 
   const hotelsFiltered = useSelector((store) => store.hotelsReducer.hotelsR);
   const [text, setText] = useState("");
-
-
-
 
   useEffect(() => {
     dispatch(getHotels({ text: text }));
@@ -35,7 +34,7 @@ export default function Hotels() {
         <ImageBackground source={image} resizeMode="cover" style={styles.image}>
           <View style={styles.container}>
             <Text style={styles.text}>
-            <Text style={styles.decored}>[ </Text>
+              <Text style={styles.decored}>[ </Text>
               Meet our Hotels
               <Text style={styles.decored}> ]</Text>
             </Text>
@@ -49,24 +48,26 @@ export default function Hotels() {
             Investigate and find the ideal
             <Text style={styles.decored}></Text>
           </Text>
-          <View>
-           
-          </View>
-          <View style={styles.containerInput}> 
-          <TextInput
-            onChangeText={(newText) => setText(newText)}
-            defaultValue={text}
-            placeholder="Search for the name of the hotel!"
-                        style={styles.inputSearch}
-          />
+          <View></View>
+          <View style={styles.containerInput}>
+            <TextInput
+              onChangeText={(newText) => setText(newText)}
+              defaultValue={text}
+              placeholder="Search for the name of the hotel!"
+              style={styles.inputSearch}
+            />
           </View>
         </View>
         <ScrollView style={styles.main}>
           {hotelsFiltered.map((hotel) => (
-            <CardHotel key={hotel._id} hotel={hotel}></CardHotel>
+            <CardHotel
+              key={hotel._id}
+              hotel={hotel}
+              props={props.navigation}
+            ></CardHotel>
           ))}
         </ScrollView>
-        <Footer/>
+        <Footer />
       </ScrollView>
     </>
   );
@@ -95,7 +96,7 @@ const styles = StyleSheet.create({
   secondarytext: {
     color: "black",
     fontSize: 28,
-   
+
     fontWeight: "bold",
     textAlign: "center",
   },
@@ -104,7 +105,7 @@ const styles = StyleSheet.create({
     color: "black",
     fontSize: 20,
     lineHeight: 25,
-    
+
     fontWeight: "light",
     textAlign: "center",
   },
@@ -123,26 +124,21 @@ const styles = StyleSheet.create({
     padding: 1,
     margin: 10,
     width: 295,
-  
+
     borderBottomColor: "#4f4f4d",
     borderWidth: 1,
     borderRadius: 5,
     backgroundColor: "#f3f3f3",
-   
   },
   main: {
-  flex: 1,
-  paddingLeft: 58,
-
-
+    flex: 1,
+    paddingLeft: 58,
   },
 
   containerInput: {
-
-
     justifyContent: "center",
     alignItems: "center",
     flex: 1,
     marginBottom: -15,
-  }
+  },
 });

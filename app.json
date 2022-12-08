@@ -9,7 +9,7 @@
     "splash": {
       "image": "https://cdn.discordapp.com/attachments/1026888381814288424/1049871880804388984/aa.png", 
       "resizeMode": "contain",
-      "backgroundColor": "#0E0E0E"
+      "backgroundColor": "#edebeb"
     },
     "updates": {
       "fallbackToCacheTimeout": 0
@@ -23,7 +23,7 @@
     "android": {
       "adaptiveIcon": {
         "foregroundImage": "https://cdn.discordapp.com/attachments/1026888381814288424/1049871880804388984/aa.png",
-        "backgroundColor": "#0E0E0E"
+        "backgroundColor": "#edebeb"
       }
     },
     "web": {

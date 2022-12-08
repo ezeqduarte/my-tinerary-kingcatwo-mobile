@@ -1,8 +1,7 @@
 import React, { useEffect, useState } from "react";
-import CardCity from "../components/CardCity";
 import { useDispatch, useSelector } from "react-redux";
-import citiesActions from "../redux/actions/citiesActions";
-import tinerariesActions from "../redux/actions/tinerariesActions";
+import hotelActions from "../redux/actions/hotelsActions";
+import showsActions from "../redux/actions/showsActions";
 import Footer from "../components/Footer";
 
 import {
@@ -13,64 +12,65 @@ import {
   View,
   Text,
 } from "react-native";
-import CardTinerary from "../components/CardTinerary";
+import CardShow from "../components/CardShow";
 
-export default function DetailsCity(props) {
- 
-  const { getCity } = citiesActions;
-  const { getTinerariesOfCity } = tinerariesActions;
-  let [detailCity, setDetailCity] = useState();
-  let [itineraries, setItineraries] = useState();
+export default function DetailsHotel(props) {
+  const { getSpecificHotel } = hotelActions;
+  const { getShows } = showsActions;
+  let [detailHotel, setDetailHotel] = useState();
 
+  let [shows, setShows] = useState([]);
+  console.log(detailHotel);
   const dispatch = useDispatch();
 
-  async function petitionCity() {
-    const res = await dispatch(getCity({ id: props.route.params }));
-    setDetailCity(res.payload.cities);
+  async function petitionHotel() {
+    const res = await dispatch(getSpecificHotel({ id: props.route.params }));
+    setDetailHotel(res.payload.hotel);
   }
 
-  async function petitionItineraries() {
-    const res = await dispatch(getTinerariesOfCity({ id: props.route.params }));
-    setItineraries(res.payload.itineraries);
+  async function petitionShow() {
+    const res = await dispatch(getShows({ id: props.route.params }));
+
+    setShows(res.payload.shows);
   }
 
   useEffect(() => {
-    petitionCity();
-    petitionItineraries();
+    petitionHotel();
+    petitionShow();
   }, []);
 
-  const image = { uri: `${detailCity?.photo}` };
+  const image = { uri: `${detailHotel?.photo[0]}` };
+
   return (
     <ScrollView>
       <ImageBackground source={image} resizeMode="cover" style={styles.image}>
         <View style={styles.container}>
           <Text style={styles.text}>
-            {detailCity?.name}
+            {detailHotel?.name}
             <Text style={styles.decored}>.</Text>
           </Text>
-          <Text style={styles.undertext}>
-            {`This place is ubicated in ${detailCity?.continent}`}
-            <Text style={styles.decored}>.</Text>
+
+          <Text style={styles.undertext2}>
+            {` ${detailHotel?.description}`}
           </Text>
           <Text style={styles.undertext}>
-            {`Have a population of ${detailCity?.population} people`}
-            <Text style={styles.decored}>.</Text>
+          <Text style={styles.decored}> | </Text>
+            {`The hotel capacity ${detailHotel?.capacity} people`}
+            <Text style={styles.decored}> | </Text>
           </Text>
         </View>
       </ImageBackground>
       <View style={styles.containerCities}>
         <ScrollView>
           <Text style={styles.secondarytext}>
-            Tineraries of {detailCity?.name}
+            Shows of {detailHotel?.name}
             <Text style={styles.decored}>.</Text>
           </Text>
-          {itineraries?.length > 0 ? (
-            itineraries?.map((itinerary) => (
-              <CardTinerary itinerary={itinerary}></CardTinerary>
-            ))
+          {shows?.length > 0 ? (
+            shows?.map((show) => <CardShow show={show}></CardShow>)
           ) : (
             <Text style={styles.thirdText}>
-              No tineraries available
+              No shows available
               <Text style={styles.decored}>.</Text>
             </Text>
           )}
@@ -105,9 +105,17 @@ const styles = StyleSheet.create({
   undertext: {
     color: "white",
     fontSize: 15,
-    lineHeight: 20,
+    marginBottom: -12,
     fontWeight: "light",
     textAlign: "left",
+  },
+  undertext2: {
+    color: "white",
+    fontSize: 18,
+    padding: 15,
+
+    fontWeight: "light",
+    textAlign: "center",
   },
   secondarytext: {
     marginTop: 20,

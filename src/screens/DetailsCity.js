@@ -66,7 +66,7 @@ export default function DetailsCity(props) {
           </Text>
           {itineraries?.length > 0 ? (
             itineraries?.map((itinerary) => (
-              <CardTinerary itinerary={itinerary}></CardTinerary>
+              <CardTinerary key={itinerary._id} itinerary={itinerary}></CardTinerary>
             ))
           ) : (
             <Text style={styles.thirdText}>

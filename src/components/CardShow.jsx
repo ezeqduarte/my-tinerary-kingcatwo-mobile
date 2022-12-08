@@ -1,27 +1,27 @@
 import { View, Text, StyleSheet, Image } from "react-native";
 import React from "react";
 
-export default function CardTinerary({ itinerary }) {
+export default function CardShow({ show }) {
   return (
     <View style={styles.cardCity}>
       <View style={styles.reactions}></View>
       <Image
         style={styles.image}
         source={{
-          uri: `${itinerary?.photo[0]}`,
+          uri: `${show?.photo[0]}`,
         }}
       />
       <Text style={styles.h4}>
         <Text style={styles.decored}>[ </Text>
-        {itinerary?.name}
+        {show?.name}
         <Text style={styles.decored}> ]</Text>
       </Text>
-      <Text style={styles.description}>{itinerary?.description}</Text>
+      <Text style={styles.description}>{show?.description}</Text>
       <View style={styles.backInfo}>
-        <Text style={styles.backInfotext}>{`Price $${itinerary?.price}`}</Text>
+        <Text style={styles.backInfotext}>{`Price $${show?.price}`}</Text>
         <Text
           style={styles.backInfotext}
-        >{`Duration ${itinerary?.duration}hs`}</Text>
+        >{`Duration ${show?.duration}hs`}</Text>
       </View>
     </View>
   );

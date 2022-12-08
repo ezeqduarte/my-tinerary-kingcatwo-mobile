@@ -64,12 +64,26 @@ const getAllHotels = createAsyncThunk("getAllHotels", async () => {
   }
 });
 
+const getSpecificHotel = createAsyncThunk("getSpecificHotel", async ({id}) => {
+  try {
+    const respuesta = await axios.get(`${API}hotels/${id}`);
+
+    return {hotel: respuesta.data.hotel };
+  } catch (error) {
+    console.log(error.message);
+  }
+});
+
+
+
+
 const hotelsAction = {
   editHotelsAdmin,
   getHotels,
   deleteHotelsAdmin,
   getAllHotels,
   getHotelsAdmin,
+  getSpecificHotel
 };
 
 export default hotelsAction;

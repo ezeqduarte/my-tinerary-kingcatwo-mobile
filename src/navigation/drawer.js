@@ -17,8 +17,8 @@ export default function Drawer() {
   return (
     <DrawerNav.Navigator initialRouteName="Home">
       <DrawerNav.Screen name="Home" component={Home} />
-      <DrawerNav.Screen name="Hotels" component={Stack2} />
       <DrawerNav.Screen name="Cities" component={Stack} />
+      <DrawerNav.Screen name="Hotels" component={Stack2} />
     </DrawerNav.Navigator>
   );
 }

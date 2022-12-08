@@ -6,9 +6,6 @@ import API from "../api/api";
 const Separator = () => <View style={styles.separator} />;
 
 export default function FormSignUp(props) {
-  
-  console.log(props.props.navigate);
-  
   const [newAccount, setNewAccount] = useState({
     name: "",
     lastName: "",
@@ -27,7 +24,7 @@ export default function FormSignUp(props) {
         });
       } else {
         Alert.alert(`The user has created succesfuly`);
-        props.props.navigate("Home")
+        props.props.navigate("Home");
       }
     });
   }
@@ -103,7 +100,7 @@ export default function FormSignUp(props) {
       <Button
         style={styles.buttonFormSignUp}
         title="Sign in whit account"
-       /*  onPress={() => props.props.navigate("Details City", city._id)} */
+        /* onPress={() => props.props.navigate("Sign In")} */
         color="#ff3648"
       ></Button>
     </View>

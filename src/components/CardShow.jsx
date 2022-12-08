@@ -8,7 +8,7 @@ export default function CardShow({ show }) {
       <Image
         style={styles.image}
         source={{
-          uri: `${show?.photo[0]}`,
+          uri: `${show?.photo}`,
         }}
       />
       <Text style={styles.h4}>
@@ -18,10 +18,10 @@ export default function CardShow({ show }) {
       </Text>
       <Text style={styles.description}>{show?.description}</Text>
       <View style={styles.backInfo}>
-        <Text style={styles.backInfotext}>{`Price $${show?.price}`}</Text>
+        <Text style={styles.backInfotext}>{`Price: $${show?.price}`}</Text>
         <Text
           style={styles.backInfotext}
-        >{`Duration ${show?.duration}hs`}</Text>
+        >{`Date: ${show?.date.slice(0,10)}`}</Text>
       </View>
     </View>
   );

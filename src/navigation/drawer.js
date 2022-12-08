@@ -3,6 +3,7 @@ import { createDrawerNavigator } from "@react-navigation/drawer";
 import Cities from "../screens/Cities";
 import Home from "../screens/Home";
 import Hotels from "../screens/Hotels";
+import SignIn from "../screens/SignIn";
 
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import DetailsCity from "../screens/DetailsCity";
@@ -19,6 +20,8 @@ export default function Drawer() {
       <DrawerNav.Screen name="Home" component={Home} />
       <DrawerNav.Screen name="Hotels" component={Stack2} />
       <DrawerNav.Screen name="Cities" component={Stack} />
+      <DrawerNav.Screen name="Sign in" component={SignIn} />
+   
     </DrawerNav.Navigator>
   );
 }

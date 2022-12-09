@@ -67,7 +67,7 @@ export default function DetailsHotel(props) {
             <Text style={styles.decored}>.</Text>
           </Text>
           {shows?.length > 0 ? (
-            shows?.map((show) => <CardShow show={show}></CardShow>)
+            shows?.map((show) => <CardShow show={show} key={show._id}></CardShow>)
           ) : (
             <Text style={styles.thirdText}>
               No shows available

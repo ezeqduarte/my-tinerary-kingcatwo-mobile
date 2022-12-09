@@ -24,7 +24,7 @@ export default function FormSignUp(props) {
         });
       } else {
         Alert.alert(`The user has created succesfuly`);
-        props.props.navigate("Home");
+        props.props.navigate("Sign In");
       }
     });
   }
@@ -100,7 +100,7 @@ export default function FormSignUp(props) {
       <Button
         style={styles.buttonFormSignUp}
         title="Sign in whit account"
-        /* onPress={() => props.props.navigate("Sign In")} */
+        onPress={() => props.props.navigate("Sign In")} 
         color="#ff3648"
       ></Button>
     </View>

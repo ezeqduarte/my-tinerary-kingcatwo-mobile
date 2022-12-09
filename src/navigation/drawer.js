@@ -1,4 +1,5 @@
 import * as React from "react";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 import { createDrawerNavigator } from "@react-navigation/drawer";
 import { useDispatch, useSelector } from "react-redux";
 import userActions from "../redux/actions/userActions";
@@ -13,9 +14,26 @@ import Profile from "../screens/Profile";
 const DrawerNav = createDrawerNavigator();
 
 export default function Drawer() {
-  let { logged, role, name, photo } = useSelector((store) => store.userReducer);
+  let { logged } = useSelector((store) => store.userReducer);
   const { reIngress } = userActions;
   const dispatch = useDispatch();
+
+  async function getToken() {
+    try {
+      let token = await AsyncStorage.getItem("token");
+      token = JSON.parse(token);
+      if (token) {
+        dispatch(reIngress(token.token.user));
+      }
+    } catch (error) {
+      console.log(error.message);
+    }
+  }
+
+  React.useEffect(() => {
+    getToken();
+  }, []);
+
   return (
     <DrawerNav.Navigator initialRouteName="Home">
       {!logged ? <DrawerNav.Screen name="Sign In" component={SignIn} /> : null}

@@ -10,6 +10,7 @@ import Stack2 from "./stack2";
 import SignUp from "../screens/SignUp";
 import SignIn from "../screens/SignIn";
 import Profile from "../screens/Profile";
+import MyReactions from "../screens/MyReactions";
 
 const DrawerNav = createDrawerNavigator();
 
@@ -42,6 +43,9 @@ export default function Drawer() {
       {logged ? <DrawerNav.Screen name="Cities" component={Stack} /> : null}
       {logged ? <DrawerNav.Screen name="Hotels" component={Stack2} /> : null}
       {logged ? <DrawerNav.Screen name="Profile" component={Profile} /> : null}
+      {logged ? (
+        <DrawerNav.Screen name="My reactions" component={MyReactions} />
+      ) : null}
     </DrawerNav.Navigator>
   );
 }

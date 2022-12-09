@@ -1,45 +1,24 @@
 import { View, Text, StyleSheet, Image, Button } from "react-native";
 import React from "react";
 import { ScrollView } from "react-native-gesture-handler";
+import { useSelector } from "react-redux";
+import CardMyReactionsTineraries from "./CardMyReactionsTineraries";
 
 export default function ReactionsItineraries({ reactionsOfTineraries }) {
+  let { logged, role, name, id, photo, token, lastName } = useSelector(
+    (store) => store.userReducer
+  );
+
   return (
     <ScrollView>
-      {reactionsOfTineraries.map((reaction) => (
-        <View key={reaction._id} style={styles.cardReaction}>
-          <View style={styles.infoReaction}>
-            <Image
-              style={styles.image}
-              source={{
-                uri: `${reaction?.itineraryId.photo[0]}`,
-              }}
-            />
-          </View>
-          <View style={styles.infoReaction}>
-            <Text style={styles.tittleYourReaction} key={reaction._id}>
-              {reaction.itineraryId.name}
-            </Text>
-            <View
-              style={{
-                flex: 1,
-                justifyContent: "center",
-                alignItems: "center",
-              }}
-            >
-              <Text style={styles.textYourReaction} key={reaction._id}>
-                Your reaction in this itinerary was:
-              </Text>
-              <Image
-                style={styles.imgReaction}
-                source={{
-                  uri: `${reaction?.icon}`,
-                }}
-              />
-            </View>
-            <Button color="#ff3648" title="DELETE"></Button>
-          </View>
-        </View>
-      ))}
+      {reactionsOfTineraries.length>0 
+      ?  reactionsOfTineraries.map((reaction) => (
+        <CardMyReactionsTineraries key={reaction._id} reaction={reaction}></CardMyReactionsTineraries>
+       ))
+      : <Text style={{textAlign: "center", fontSize:15}}>You dont have reactions in our tineraries.</Text>
+      
+      
+     }
     </ScrollView>
   );
 }

@@ -1,10 +1,15 @@
 import { View, Text, StyleSheet, Image } from "react-native";
 import React from "react";
+import ReactionOfShows from "./ReactionOfShows";
 
 export default function CardShow({ show }) {
   return (
     <View style={styles.cardCity}>
-      <View style={styles.reactions}></View>
+      <View style={styles.reactions}>
+       
+          <ReactionOfShows itinerary={show._id}></ReactionOfShows>
+        
+      </View>
       <Image
         style={styles.image}
         source={{
@@ -19,9 +24,10 @@ export default function CardShow({ show }) {
       <Text style={styles.description}>{show?.description}</Text>
       <View style={styles.backInfo}>
         <Text style={styles.backInfotext}>{`Price: $${show?.price}`}</Text>
-        <Text
-          style={styles.backInfotext}
-        >{`Date: ${show?.date.slice(0,10)}`}</Text>
+        <Text style={styles.backInfotext}>{`Date: ${show?.date.slice(
+          0,
+          10
+        )}`}</Text>
       </View>
     </View>
   );

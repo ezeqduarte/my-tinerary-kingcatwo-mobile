@@ -30,7 +30,14 @@ export default function LikeDislike({ reaction: reactionProp, itineraryId }) {
     : (urlPhoto = reaction.iconBack);
 
   return (
-    <View style={{marginHorizontal: 15, marginVertical: 10, display: "flex", alignItems: "center"}}>
+    <View
+      style={{
+        marginHorizontal: 15,
+        marginVertical: 10,
+        display: "flex",
+        alignItems: "center",
+      }}
+    >
       <Text>{reaction.userId.length}</Text>
       <Pressable onPress={like}>
         <Image

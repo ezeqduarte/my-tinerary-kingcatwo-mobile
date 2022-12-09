@@ -17,9 +17,9 @@ export default function ReactionShows({ reactionsOfShows }) {
     <ScrollView>
       {reactionsOfShows.length > 0 ? (
         reactionsOfShows.map((reaction) => (
-          <CardMyReactionsTineraries
+          <CardMyReactionsShows
             reaction={reaction} key={reaction._id}
-          ></CardMyReactionsTineraries>
+          ></CardMyReactionsShows>
         ))
       ) : (
         <Text style={{textAlign: "center", fontSize:15}}>You dont have reactions in our shows.</Text>

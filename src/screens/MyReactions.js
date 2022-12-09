@@ -1,16 +1,14 @@
-import { View, Text, StyleSheet, Image, Button } from "react-native";
+import { Text, StyleSheet } from "react-native";
 import React, { useEffect } from "react";
 import { ScrollView } from "react-native-gesture-handler";
 import { useDispatch, useSelector } from "react-redux";
 import reactionsActions from "../redux/actions/reactionsActions";
 import ReactionsItineraries from "../components/ReactionsItineraries";
 import ReactionShows from "../components/ReactionShows";
-import Footer from "../components/Footer";
 
 export default function MyReactions() {
-  let { logged, role, name, id, photo, token, lastName } = useSelector(
-    (store) => store.userReducer
-  );
+  let { id, token } = useSelector((store) => store.userReducer);
+  let { refresh } = useSelector((store) => store.reactionsReducer);
   const { getReactionsOfUser } = reactionsActions;
   const dispatch = useDispatch();
   let allReactionsOfUser = useSelector(
@@ -18,7 +16,7 @@ export default function MyReactions() {
   );
   useEffect(() => {
     dispatch(getReactionsOfUser({ token: token, id: id }));
-  }, []);
+  }, [refresh]);
 
   const reactionsOfTineraries = allReactionsOfUser.filter(
     (reaction) => reaction.itineraryId
@@ -39,7 +37,6 @@ export default function MyReactions() {
         <Text style={styles.decored}>.</Text>
       </Text>
       <ReactionShows reactionsOfShows={reactionsOfShows} />
-      <Footer/>
     </ScrollView>
   );
 }

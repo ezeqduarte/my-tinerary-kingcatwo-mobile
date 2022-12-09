@@ -5,6 +5,7 @@ import {
   Image,
   StyleSheet,
   Button,
+  Alert,
 } from "react-native";
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
@@ -12,16 +13,19 @@ import userActions from "../redux/actions/userActions";
 import Footer from "../components/Footer";
 
 export default function Profile() {
-  let { logged, role, name, id, photo, lastName } = useSelector(
+  let { logged, role, name, id, photo, token, lastName } = useSelector(
     (store) => store.userReducer
   );
   const dispatch = useDispatch();
-  const { getDatos } = userActions;
+  const { getDatos, logout } = userActions;
   useEffect(() => {
     dispatch(getDatos(id));
   }, []);
 
-  console.log(photo);
+  const desconect = async () => {
+    await dispatch(logout(token));
+    Alert.alert(`Bye ${name} ${lastName}!`);
+  };
 
   return (
     <ScrollView>
@@ -36,8 +40,9 @@ export default function Profile() {
             uri: `${photo}`,
           }}
         />
-        <Button title="Logout" color="#ff3648"></Button>
+        <Button title="Logout" onPress={desconect} color="#ff3648"></Button>
       </View>
+      <View style={styles.divEdit}></View>
       <Footer />
     </ScrollView>
   );
@@ -68,5 +73,8 @@ const styles = StyleSheet.create({
   },
   decored: {
     color: "#ff3648",
+  },
+  divEdit: {
+    color: "#white",
   },
 });

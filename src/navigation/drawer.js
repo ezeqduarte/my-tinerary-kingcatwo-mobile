@@ -39,9 +39,9 @@ export default function Drawer() {
       {!logged ? <DrawerNav.Screen name="Sign In" component={SignIn} /> : null}
       {!logged ? <DrawerNav.Screen name="Sign Up" component={SignUp} /> : null}
       {logged ? <DrawerNav.Screen name="Home" component={Home} /> : null}
-      {logged ? <DrawerNav.Screen name="Profile" component={Profile} /> : null}
       {logged ? <DrawerNav.Screen name="Cities" component={Stack} /> : null}
       {logged ? <DrawerNav.Screen name="Hotels" component={Stack2} /> : null}
+      {logged ? <DrawerNav.Screen name="Profile" component={Profile} /> : null}
     </DrawerNav.Navigator>
   );
 }

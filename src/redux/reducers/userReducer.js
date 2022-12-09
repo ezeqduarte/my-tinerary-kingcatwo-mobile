@@ -77,7 +77,16 @@ const userReducer = createReducer(initialState, (builder) => {
   builder.addCase(logout.fulfilled, (state, action) => {
     const { success, response } = action.payload;
     if (success) {
-      localStorage.removeItem("token");
+      async function deleteToken() {
+        try {
+          await AsyncStorage.removeItem("token");
+        } catch (error) {
+          console.log(error.message);
+        }
+      }
+
+      deleteToken();
+
       let newState = {
         ...state,
         name: "",

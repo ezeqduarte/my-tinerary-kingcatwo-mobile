@@ -14,14 +14,12 @@ import {
 } from "react-native";
 
 export default function Cities(props) {
-  
   const image = { uri: "https://cdn.wallpapersafari.com/80/95/bhD7xr.jpg" };
   const { getCities, getContinent } = citiesActions;
   const dispatch = useDispatch();
   let allContinents = useSelector((store) => store.citiesReducer.continents);
   const citiesFiltered = useSelector((store) => store.citiesReducer.cities);
   const [text, setText] = useState("");
-  
 
   allContinents = [
     ...new Set([...allContinents].map((city) => city.continent)),
@@ -41,8 +39,8 @@ export default function Cities(props) {
         <ImageBackground source={image} resizeMode="cover" style={styles.image}>
           <View style={styles.container}>
             <Text style={styles.text}>
-              Meet our most popular locations
-              <Text style={styles.decored}>.</Text>
+              <Text style={styles.decored}>[</Text> Meet our Locations
+              <Text style={styles.decored}> ]</Text>
             </Text>
           </View>
         </ImageBackground>
@@ -72,10 +70,14 @@ export default function Cities(props) {
         </View>
         <ScrollView style={styles.main}>
           {citiesFiltered.map((city) => (
-            <CardCity key={city._id} props={props.navigation} city={city}></CardCity>
+            <CardCity
+              key={city._id}
+              props={props.navigation}
+              city={city}
+            ></CardCity>
           ))}
         </ScrollView>
-        <Footer/>
+        <Footer />
       </ScrollView>
     </>
   );
@@ -96,10 +98,10 @@ const styles = StyleSheet.create({
   },
   text: {
     color: "white",
-    fontSize: 47,
+    fontSize: 30,
     lineHeight: 65,
     fontWeight: "bold",
-    textAlign: "left",
+    textAlign: "center",
   },
   secondarytext: {
     color: "black",

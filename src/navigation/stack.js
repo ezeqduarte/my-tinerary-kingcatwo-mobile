@@ -1,7 +1,7 @@
 import React from "react";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
-import DetailsCity from "../screens/DetailsCity";
 import Cities from "../screens/Cities";
+import DetailsCity from "../screens/DetailsCity";
 
 const StackNav = createNativeStackNavigator();
 

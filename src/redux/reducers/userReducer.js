@@ -27,11 +27,9 @@ const userReducer = createReducer(initialState, (builder) => {
             "token",
             JSON.stringify({ token: { user: token } })
           );
-        } catch (e) {
-          console.log(e);
+        } catch (error) {
+          console.log(error.message);
         }
-
-        console.log("Done.");
       }
       setToken();
       let newState = {

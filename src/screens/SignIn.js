@@ -34,10 +34,10 @@ export default function SignUp(props) {
         
           Alert.alert(`Welcome again ${response.data.response.user.name}`).then(props.navigation.navigate("Home"));
         }
-        console.log(response.data);
+       
       });
   }
-  console.log(loginAccount);
+
   return (
     <View style={styles.signUp}>
       <View style={styles.formSignUp}>

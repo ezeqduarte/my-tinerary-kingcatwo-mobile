@@ -1,3 +1,4 @@
+import AsyncStorage from "@react-native-async-storage/async-storage";
 import { createReducer } from "@reduxjs/toolkit";
 import userActions from "../actions/userActions";
 const { ingress, reIngress, logout, getDatos, editProfile } = userActions;
@@ -20,7 +21,19 @@ const userReducer = createReducer(initialState, (builder) => {
 
     if (success) {
       let { user, token } = response.response;
-      localStorage.setItem("token", JSON.stringify({ token: { user: token } }));
+      async function setToken() {
+        try {
+          await AsyncStorage.setItem(
+            "token",
+            JSON.stringify({ token: { user: token } })
+          );
+        } catch (e) {
+          console.log(e);
+        }
+
+        console.log("Done.");
+      }
+      setToken();
       let newState = {
         ...state,
         name: user.name,

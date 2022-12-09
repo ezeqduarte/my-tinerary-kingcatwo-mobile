@@ -6,22 +6,68 @@ import {
   Button,
   Pressable,
   Image,
+  Alert,
 } from "react-native";
-import React from "react";
+import React, { useState } from "react";
 import Footer from "../components/Footer";
+import API from "../api/api";
+import axios from "axios";
+import { useDispatch } from "react-redux";
+import userActions from "../redux/actions/userActions";
 
-export default function SignUp() {
+export default function SignUp(props) {
+  const [loginAccount, setloginAccount] = useState({
+    email: "",
+    password: "",
+  });
+  const dispatch = useDispatch();
+  async function sendLoginAcc() {
+    await axios
+      .post(`${API}auth/sign-in`, loginAccount, { new: true })
+      .then((response) => {
+        if (!response.data.succes) {
+          response.data.message.map((message) => {
+            Alert.alert(`${message}`);
+          });
+        } else {
+          dispatch(userActions.ingress(loginAccount));
+        
+          Alert.alert(`Welcome again ${response.data.response.user.name}`).then(props.navigation.navigate("Home"));
+        }
+        console.log(response.data);
+      });
+  }
+  console.log(loginAccount);
   return (
     <View style={styles.signUp}>
       <View style={styles.formSignUp}>
         <Text style={styles.titulo}>Welcome to My-Tinerary!</Text>
         <Text style={styles.textoLog}>Sign In with your account</Text>
-        <TextInput placeholder="E-Mail" style={styles.inputSearch} />
-        <TextInput placeholder="Password" style={styles.inputSearch} />
-        <Text style={styles.textoLog}>Or create a new account</Text>
+        <TextInput
+          onChangeText={(newText) =>
+            setloginAccount({ ...loginAccount, email: newText })
+          }
+          defaultValue={loginAccount.email}
+          placeholder="E-Mail"
+          style={styles.inputSearch}
+        />
+        <TextInput
+          secureTextEntry={true}
+          autoCorrect={false}
+          onChangeText={(newText) =>
+            setloginAccount({ ...loginAccount, password: newText })
+          }
+          defaultValue={loginAccount.password}
+          placeholder="Password"
+          style={styles.inputSearch}
+        />
+        <Pressable style={styles.botonColor} onPress={sendLoginAcc}>
+          <Text style={styles.fondoBoton}>Sign In</Text>
+        </Pressable>
+        <Text style={styles.textoLog2}>Or create a new account!</Text>
         <Pressable
           style={styles.botonColor}
-          onPress={() => props.navigation.navigate("DetailsHotel", place._id)}
+          onPress={() => props.navigation.navigate("Sign Up")}
         >
           <Text style={styles.fondoBoton}>Sign Up</Text>
         </Pressable>
@@ -46,6 +92,11 @@ const styles = StyleSheet.create({
 
   textoLog: {
     marginBottom: 5,
+  },
+
+  textoLog2: {
+    marginBottom: 5,
+    marginTop: 45,
   },
 
   inputSearch: {
@@ -84,10 +135,9 @@ const styles = StyleSheet.create({
     height: 120,
   },
 
-
-  titulo:{
+  titulo: {
     marginBottom: 20,
     fontSize: 20,
-    fontWeight: "bold"
-  }
+    fontWeight: "bold",
+  },
 });

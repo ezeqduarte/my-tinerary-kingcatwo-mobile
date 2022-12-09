@@ -10,6 +10,6 @@ export default function Stack() {
     <StackNav.Navigator>
       <StackNav.Screen name="Our Places" component={Cities} />
       <StackNav.Screen name="Details City" component={DetailsCity} />
-       </StackNav.Navigator>
+    </StackNav.Navigator>
   );
 }

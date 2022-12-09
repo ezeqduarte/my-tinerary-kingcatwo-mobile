@@ -14,6 +14,7 @@ import {
 } from "react-native";
 
 export default function Cities(props) {
+  
   const image = { uri: "https://cdn.wallpapersafari.com/80/95/bhD7xr.jpg" };
   const { getCities, getContinent } = citiesActions;
   const dispatch = useDispatch();

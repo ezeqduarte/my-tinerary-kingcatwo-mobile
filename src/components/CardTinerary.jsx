@@ -1,10 +1,16 @@
 import { View, Text, StyleSheet, Image } from "react-native";
 import React from "react";
+import { useDispatch } from "react-redux";
+import ReactionsItineraries from "./Reactions";
 
 export default function CardTinerary({ itinerary }) {
+  const dispatch = useDispatch();
+
   return (
     <View style={styles.cardCity}>
-      <View style={styles.reactions}></View>
+      <View style={styles.reactions}>
+        <ReactionsItineraries itinerary={itinerary._id} />
+      </View>
       <Image
         style={styles.image}
         source={{
